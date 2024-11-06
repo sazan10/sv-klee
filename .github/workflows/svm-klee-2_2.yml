@@ -79,7 +79,7 @@ jobs:
                 else
                   ls -l "$bc_file"
                   echo "klee directory $dir"
-                  local dirname=$(dirname "$dir" | sed 's|^\./||')
+                  local dirname=$(basename "${dir%/}")
                   echo "klee directory after process $dirname"
 
                   for i in {1..2}; do
