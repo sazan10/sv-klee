@@ -60,8 +60,7 @@ jobs:
         run: |
           #!/bin/bash
           set +e 
-   
-        
+           
           cd sv-benchmarks/c
           mkdir -p klee_reports          
           include_dirs=$(find . -name '*.h' -exec dirname {} + | sort -u | sed 's/^/-I /')
