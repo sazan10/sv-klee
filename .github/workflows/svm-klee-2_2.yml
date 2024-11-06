@@ -82,7 +82,7 @@ jobs:
                   dir_name=$(basename "${dir%/}")
                   echo "klee directory after process $dirname"
 
-                  for i in {1..2}; do
+                  for i in {1..10}; do
                     output_file="klee_reports/$dir_name/$(basename "$file" .c)/$i.txt"
                     mkdir -p "./klee_reports/$dir_name/$(basename "$file" .c)/"
                     klee_output=$(/tmp/klee/build/bin/klee "$bc_file" 2>&1 | tee -a "$output_file")
