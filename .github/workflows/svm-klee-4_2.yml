@@ -19,7 +19,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential cmake curl file g++-multilib gcc-multilib git libcap-dev libunwind-dev libgoogle-perftools-dev libncurses5-dev libsqlite3-dev libtcmalloc-minimal4 python3-pip unzip graphviz doxygen bison flex libboost-all-dev perl zlib1g-dev minisat
           sudo pip3 install lit wllvm
-          sudo apt-get install -y clang-14 llvm-14 llvm-14-dev llvm-14-tools 
+          sudo apt-get install -y clang-13 llvm-13 llvm-13-dev llvm-13-tools 
       - name: Install STP (a dependency to Klee)
         run: |
           git clone https://github.com/stp/stp.git /tmp/stp
@@ -37,7 +37,7 @@ jobs:
       - name: Build uClibc and the POSIX environment model
         run: |
           git clone https://github.com/klee/klee-uclibc.git /tmp/klee-uclibc
-          cd /tmp/klee-uclibc && ./configure --make-llvm-lib --with-cc clang-14 --with-llvm-config llvm-config-14
+          cd /tmp/klee-uclibc && ./configure --make-llvm-lib --with-cc clang-13 --with-llvm-config llvm-config-13
           make -j2 
           cd ..
       
@@ -72,10 +72,10 @@ jobs:
             while IFS= read -r -d '' file; do
               bc_file="${file%.c}.bc"
               echo "Before compilation:"
-              if clang-14 -I "$include_dirs" -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone "$file" -o "$bc_file" 2>/dev/null; then
+              if clang-13 -I "$include_dirs" -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone "$file" -o "$bc_file" 2>/dev/null; then
                 echo "After compilation:"
               
-                if ! /usr/lib/llvm-14/bin/llvm-nm "$PWD/$bc_file" | grep -q " T main"; then
+                if ! /usr/lib/llvm-13/bin/llvm-nm "$PWD/$bc_file" | grep -q " T main"; then
                   rm "$bc_file"
                 else
                   ls -l "$bc_file"
