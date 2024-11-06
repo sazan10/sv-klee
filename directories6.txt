@@ -1,0 +1,2 @@
+./psyco/ ./pthread-C-DAC/ ./pthread-atomic/ ./pthread-complex/ ./pthread-deagle/ ./pthread-divine/ ./pthread-driver-races/ ./pthread-ext/ ./pthread-lit/ ./pthread-memsafety/ ./pthread-nondet/ ./pthread-race-challenges/ ./pthread-wmm/ ./pthread/ ./recursified_loop-crafted/ ./recursified_loop-invariants/ ./recursified_loop-simple/ ./recursified_nla-digbench/ ./recursive-simple/ ./recursive-with-pointer/ 
+./recursive/ 
