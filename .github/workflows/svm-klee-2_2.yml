@@ -78,8 +78,12 @@ jobs:
                   rm "$bc_file"
                 else
                   ls -l "$bc_file"
+                  echo "klee directory $dir"
+                  local dirname=$(dirname "$dir" | sed 's|^\./||')
+                  echo "klee directory after process $dirname"
+
                   for i in {1..2}; do
-                    output_file="klee_reports/$dir/$(basename "$file" .c)/$i.txt"
+                    output_file="klee_reports/$dirname/$(basename "$file" .c)/$i.txt"
                     
                     klee_output=$(/tmp/klee/build/bin/klee "$bc_file" 2>&1 | tee -a "$output_file")
                     # klee_output=$(/tmp/klee/build/bin/klee "$bc_file" )
