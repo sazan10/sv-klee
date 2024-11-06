@@ -79,10 +79,13 @@ jobs:
                   rm "$bc_file"
                 else
                   ls -l "$bc_file"
-                  output_file="klee_reports/$(basename "$file" .c)_klee_report.txt"
-                  # klee_output=$(/tmp/klee/build/bin/klee "$bc_file" 2>&1 | tee -a "$output_file")
-                  klee_output=$(/tmp/klee/build/bin/klee "$bc_file" )
+                  for i in {1..2}; do
+                    output_file="klee_reports/$dir/$(basename "$file" .c)/$i.txt"
+                    
+                    klee_output=$(/tmp/klee/build/bin/klee "$bc_file" 2>&1 | tee -a "$output_file")
+                  # klee_output=$(/tmp/klee/build/bin/klee "$bc_file" )
                   klee_exit_code=$?
+                  done
                   if [[ $klee_exit_code -eq 0 ]]; then
                     /tmp/klee/build/bin/klee "$bc_file"
                     echo ""
