@@ -81,10 +81,10 @@ jobs:
                   ls -l "$bc_file"
                   output_file="klee_reports/$(basename "$file" .c)_klee_report.txt"
                   # klee_output=$(/tmp/klee/build/bin/klee "$bc_file" 2>&1 | tee -a "$output_file")
-                  klee_output=$(/tmp/klee/build/bin/klee "$bc_file" )
+                  klee_output=$(timeout 10s /tmp/klee/build/bin/klee "$bc_file" )
                   klee_exit_code=$?
                   if [[ $klee_exit_code -eq 0 ]]; then
-                    /tmp/klee/build/bin/klee "$bc_file"
+                    timeout 10s /tmp/klee/build/bin/klee "$bc_file"
                     echo ""
                   elif [[ $klee_exit_code -eq 1 && $klee_output =~ "Invalid record" ]]; then
                	    continue 
