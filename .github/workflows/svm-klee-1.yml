@@ -60,7 +60,7 @@ jobs:
         run: |
           #!/bin/bash
           set +e 
-           
+          
           cd sv-benchmarks/c
           mkdir -p klee_reports          
           include_dirs=$(find . -name '*.h' -exec dirname {} + | sort -u | sed 's/^/-I /')
@@ -81,7 +81,7 @@ jobs:
                   echo "klee directory $dir"
                   dir_name=$(basename "${dir%/}")
                   echo "klee directory after process $dirname"
-
+                  ulimit -t 60 
                   for i in {1..10}; do
                     output_file="klee_reports/$dir_name/$(basename "$file" .c)/$i.txt"
                     mkdir -p "./klee_reports/$dir_name/$(basename "$file" .c)/"
