@@ -1,1 +1,1 @@
-./longjmp/ ./loop-acceleration/ ./loop-crafted/ ./loop-floats-scientific-comp/ ./loop-industry-pattern/ 
+./longjmp ./loop-acceleration ./loop-crafted ./loop-industry-pattern/ 
