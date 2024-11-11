@@ -79,7 +79,7 @@ jobs:
                 else
                   ls -l "$bc_file"
                   echo "klee directory $dir"
-                  dir_name=$(basename "${dir%/}")
+                  dir_name=$(basename "$dir")
                   echo "klee directory after process $dirname"
 
                   for i in {1..10}; do
