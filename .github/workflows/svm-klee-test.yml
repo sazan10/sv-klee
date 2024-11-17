@@ -65,7 +65,7 @@ jobs:
           mkdir -p klee_reports          
           include_dirs=$(find . -name '*.h' -exec dirname {} + | sort -u | sed 's/^/-I /')
         
-          DIR_FILE="../../directories_text.txt"
+          DIR_FILE="../../directories_test.txt"
           read -r -a dirs < "$DIR_FILE"
           for dir in "${dirs[@]}"; do
             while IFS= read -r -d '' file; do
